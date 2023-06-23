@@ -1,0 +1,301 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+$white: #fff;
+$dark: #211e1e;
+$red: #dd3d3d;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+}
+
+.App {
+  height: 100vh;
+  background: $white;
+  padding: 40px 0 0;
+  transition: all 0.3s ease;
+}
+
+.App.dark {
+  background: #2b2b2b;
+  color: $white;
+
+  .input {
+    border-color: $white;
+  }
+
+  .input,
+  .input::placeholder,
+  .add-button,
+  .completed-btn,
+  .tasks-item,
+	.tasks-empty {
+    color: $white;
+  }
+
+  .tasks-item {
+    background-color: $dark;
+
+    &.important {
+      background-color: $red;
+    }
+  }
+
+  .modal {
+    background: rgba($color: #ffffff, $alpha: 0.5);
+    &-content {
+      background: $dark;
+      box-shadow: 0 0 20px 0 $dark;
+    }
+    &-btn {
+      color: $white;
+      border-color: $white;
+    }
+  }
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.change-theme-btn {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.input {
+  height: 50px;
+  width: 100%;
+  padding: 0 13px;
+  border: 2px solid $dark;
+  background: transparent;
+  color: $dark;
+  border-radius: 8px;
+  outline: none;
+  font-size: 16px;
+  font-weight: 400;
+  transition: all 0.3s ease;
+
+  &::placeholder {
+    color: $dark;
+    transition: all 0.3s ease;
+  }
+}
+
+.add-button,
+.completed-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  color: $dark;
+  margin: 30px auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.completed-btn {
+  margin: 40px 0 15px;
+}
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tasks-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  padding: 0 13px;
+  border: 2px solid $dark;
+  border-radius: 8px;
+  list-style-type: none;
+  color: $dark;
+  font-weight: 400;
+  transition: all 0.3s ease;
+
+  span {
+    cursor: pointer;
+  }
+
+  &.important {
+    border-color: $red;
+    background-color: $red;
+    color: $white;
+
+    span:first-child {
+      font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+    }
+
+		.tasks-control {
+			transition: none;
+		}
+  }
+
+  &.completed {
+    .tasks-item-title {
+      text-decoration: line-through;
+    }
+
+    .tasks-control {
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+}
+
+.task-enter {
+  opacity: 0;
+}
+.task-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease;
+}
+.task-exit {
+  opacity: 1;
+}
+.task-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.tasks-empty {
+  color: $dark;
+  font-size: 16px;
+  text-align: center;
+}
+
+.tasks-control {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+
+  span {
+    user-select: none;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($color: #000000, $alpha: 0.5);
+  transition: all 0.3s ease;
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 30px;
+    width: 480px;
+    height: 230px;
+    background: $white;
+    border-radius: 4px;
+    box-shadow: 0 0 20px 0 $white;
+    transform: translate(0, 0);
+    transition: all 0.3s ease;
+
+    span {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 30px;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
+  &-btns {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+  }
+
+  &-btn {
+    background: transparent;
+    border: 2px solid $dark;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0 30px;
+    color: $dark;
+    border-radius: 4px;
+    margin-left: auto;
+    cursor: pointer;
+
+    &.primary {
+      margin-left: 0;
+      background: #7e51ff;
+      border: none;
+      color: $white;
+    }
+  }
+}
+
+.modal.animated {
+  visibility: hidden;
+  opacity: 0;
+
+  .modal-content {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(0, 50%);
+  }
+
+  &.show {
+    visibility: visible;
+    opacity: 1;
+
+    .modal-content {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(0, 0);
+    }
+  }
+}
+
+.loader {
+  margin: 0 auto;
+  height: 50px;
+  width: 50px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: $dark;
+  border-radius: 50%;
+  background-clip: content-box;
+  animation: donut-spin 1s linear infinite;
+}
+
+@keyframes donut-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
