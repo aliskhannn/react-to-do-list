@@ -27,6 +27,16 @@ function App() {
     setTasks([...tasks, newTask]);
   }
 
+	function changeTask(task) {
+		setTasks(tasks.map(t => {
+			if (t.id === task.id) {
+				return task;
+			} else {
+				return t;
+			}
+		}));
+	}
+
   function removeTask(task) {
     setTasks(tasks.filter(t => t.id !== task.id));
   }
@@ -51,6 +61,7 @@ function App() {
               tasks={tasks}
               setTasks={setTasks}
               remove={removeTask}
+							change={changeTask}
             />
           )}
           <MyModal createTask={createTask} opened={opened} setOpened={setOpened} />

@@ -1,19 +1,54 @@
 import { useState } from "react";
+import MyInput from "./UI/MyInput";
+import MyButton from "./UI/MyButton";
 
-function TaskItem({ remove, children, task, ...props }) {
-	const [isImportant, setIsImportant] = useState(false);
-	const [isCompleted, setIsCompleted] = useState(false);
+function TaskItem({ remove, change, children, task, ...props }) {
+  const [isImportant, setIsImportant] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
-  return (
-    <li className={`tasks-item ${isImportant ? 'important' : ''} ${isCompleted ? 'completed' : ''}`} {...props}>
-      <span className="tasks-item-title" onClick={() => setIsCompleted(!isCompleted)}>{children}</span>
-      <div className="tasks-control">
-        <span className="material-symbols-outlined" onClick={() => setIsImportant(!isImportant)}>star</span>
-        <span className="material-symbols-outlined">edit</span>
-        <span className="material-symbols-outlined" onClick={() => remove(task)}>delete</span>
+  let taskContent;
+
+  if (isEditing) {
+    taskContent = (
+      <div className="tasks-edit">
+        <MyInput
+          value={task.title}
+          onChange={(e) => {
+            change({
+              ...task,
+              title: e.target.value,
+            });
+          }}
+        />
+        <MyButton className="my-button" onClick={() => setIsEditing(false)}>Save</MyButton>
       </div>
-    </li>
-  );
+    );
+  } else {
+    taskContent = (
+      <li
+        className={`tasks-item ${isImportant ? "important" : ""} ${isCompleted ? "completed" : ""}`}
+        {...props}
+      >
+        <span className="tasks-item-title" onClick={() => setIsCompleted(!isCompleted)}>
+          {children}
+        </span>
+        <div className="tasks-control">
+          <span className="material-symbols-outlined" onClick={() => setIsImportant(!isImportant)}>
+            star
+          </span>
+          <span className="material-symbols-outlined" onClick={() => setIsEditing(true)}>
+            edit
+          </span>
+          <span className="material-symbols-outlined" onClick={() => remove(task)}>
+            delete
+          </span>
+        </div>
+      </li>
+    );
+  }
+
+  return <>{taskContent}</>;
 }
 
 export default TaskItem;

@@ -30,7 +30,7 @@ function MyModal({ opened, setOpened, createTask }) {
         />
         <div className="modal-btns">
           <MyButton
-            className="modal-btn"
+            className="my-button"
             onClick={() => {
               setTask("");
               setOpened(false);
@@ -38,7 +38,7 @@ function MyModal({ opened, setOpened, createTask }) {
           >
             Cancel
           </MyButton>
-          <MyButton className="modal-btn primary" onClick={addNewTask}>
+          <MyButton className="my-button primary" onClick={addNewTask}>
             Add
           </MyButton>
         </div>

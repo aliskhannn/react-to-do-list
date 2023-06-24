@@ -54,11 +54,12 @@ body {
       background: $dark;
       box-shadow: 0 0 20px 0 $dark;
     }
-    &-btn {
-      color: $white;
-      border-color: $white;
-    }
   }
+
+	.my-button {
+		color: $white;
+		border-color: $white;
+	}
 }
 
 .container {
@@ -116,7 +117,8 @@ body {
 .tasks-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+	padding-bottom: 30px;
 }
 
 .tasks-item {
@@ -162,6 +164,11 @@ body {
   }
 }
 
+.tasks-edit {
+	display: flex;
+	gap: 4px;
+}
+
 .task-enter {
   opacity: 0;
 }
@@ -181,6 +188,7 @@ body {
   color: $dark;
   font-size: 16px;
   text-align: center;
+  transition: all 0.3s ease;
 }
 
 .tasks-control {
@@ -236,26 +244,26 @@ body {
     gap: 10px;
     margin-top: 25px;
   }
+}
 
-  &-btn {
-    background: transparent;
-    border: 2px solid $dark;
-    height: 50px;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 0 30px;
-    color: $dark;
-    border-radius: 4px;
-    margin-left: auto;
-    cursor: pointer;
+.my-button {
+	background: transparent;
+	border: 2px solid $dark;
+	height: 50px;
+	font-size: 16px;
+	font-weight: 600;
+	padding: 0 30px;
+	color: $dark;
+	border-radius: 4px;
+	margin-left: auto;
+	cursor: pointer;
 
-    &.primary {
-      margin-left: 0;
-      background: #7e51ff;
-      border: none;
-      color: $white;
-    }
-  }
+	&.primary {
+		margin-left: 0;
+		background: #7e51ff;
+		border: none;
+		color: $white;
+	}
 }
 
 .modal.animated {
