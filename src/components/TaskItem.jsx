@@ -1,6 +1,6 @@
 import { useState } from "react";
-import MyInput from "./UI/MyInput";
-import MyButton from "./UI/MyButton";
+import Input from "./UI/Input";
+import Button from "./UI/Button";
 
 function TaskItem({ remove, change, children, task, ...props }) {
   const [isImportant, setIsImportant] = useState(false);
@@ -12,7 +12,7 @@ function TaskItem({ remove, change, children, task, ...props }) {
   if (isEditing) {
     taskContent = (
       <div className="tasks-edit">
-        <MyInput
+        <Input
           value={task.title}
           onChange={(e) => {
             change({
@@ -21,7 +21,7 @@ function TaskItem({ remove, change, children, task, ...props }) {
             });
           }}
         />
-        <MyButton className="my-button" onClick={() => setIsEditing(false)}>Save</MyButton>
+        <Button className="my-button" onClick={() => setIsEditing(false)}>Save</Button>
       </div>
     );
   } else {

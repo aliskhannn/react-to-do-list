@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-function MyButton({ children, ...props }) {
+function Button({ children, ...props }) {
   return (
 		<button {...props}>
 			{children}
@@ -7,4 +7,4 @@ function MyButton({ children, ...props }) {
 	);
 }
 
-export default MyButton;
+export default Button;

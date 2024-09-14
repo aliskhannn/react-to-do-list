@@ -1,4 +1,4 @@
-function MyInput({ ...props }) {
+function Input({ ...props }) {
   return (
     <input
 			className="input"
@@ -8,4 +8,4 @@ function MyInput({ ...props }) {
   );
 }
 
-export default MyInput;
+export default Input;
