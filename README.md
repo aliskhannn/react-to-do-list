@@ -70,3 +70,9 @@ To-Do List — это удобное приложение для управле�
    ```
    http://localhost:5173
    ```
+
+## Автор
+
+Aliskhan – Frontend разработчик
+
+[GitHub](https://github.com/Aliskhan228)
